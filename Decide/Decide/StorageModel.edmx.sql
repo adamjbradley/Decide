@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 10/02/2013 20:07:44
+-- Date Created: 10/04/2013 11:24:38
 -- Generated from EDMX file: C:\Users\abradley\Documents\GitHub\Decide\Decide\Decide\StorageModel.edmx
 -- --------------------------------------------------
 
@@ -83,6 +83,12 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_ComplexDecisionRating]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Ratings] DROP CONSTRAINT [FK_ComplexDecisionRating];
 GO
+IF OBJECT_ID(N'[dbo].[FK_DecisionHistoryDecision]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Decisions] DROP CONSTRAINT [FK_DecisionHistoryDecision];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DecisionHistory]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DecusionHistories] DROP CONSTRAINT [FK_DecisionHistory];
+GO
 IF OBJECT_ID(N'[dbo].[FK_Group_inherits_Entity]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Entities_Group] DROP CONSTRAINT [FK_Group_inherits_Entity];
 GO
@@ -124,8 +130,8 @@ GO
 IF OBJECT_ID(N'[dbo].[SocialIdentities]', 'U') IS NOT NULL
     DROP TABLE [dbo].[SocialIdentities];
 GO
-IF OBJECT_ID(N'[dbo].[Wisdoms]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Wisdoms];
+IF OBJECT_ID(N'[dbo].[Wisdom]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Wisdom];
 GO
 IF OBJECT_ID(N'[dbo].[Options1]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Options1];
@@ -141,6 +147,12 @@ IF OBJECT_ID(N'[dbo].[ComplexDecisionHistories]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[Ratings]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Ratings];
+GO
+IF OBJECT_ID(N'[dbo].[DecisionHistories]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[DecisionHistories];
+GO
+IF OBJECT_ID(N'[dbo].[DecusionHistories]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[DecusionHistories];
 GO
 IF OBJECT_ID(N'[dbo].[Entities_Group]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Entities_Group];
@@ -248,8 +260,8 @@ CREATE TABLE [dbo].[Wisdom] (
 );
 GO
 
--- Creating table 'Options1'
-CREATE TABLE [dbo].[Options1] (
+-- Creating table 'Options'
+CREATE TABLE [dbo].[Options] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [DateCreated] datetime  NOT NULL,
     [DateModified] datetime  NOT NULL,
@@ -306,6 +318,15 @@ CREATE TABLE [dbo].[DecisionHistories] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Version] nvarchar(max)  NOT NULL,
     [DateTime] nvarchar(max)  NOT NULL
+);
+GO
+
+-- Creating table 'DecusionHistories'
+CREATE TABLE [dbo].[DecusionHistories] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Version] bigint  NOT NULL,
+    [DateTime] datetime  NOT NULL,
+    [Decision_Id] int  NOT NULL
 );
 GO
 
@@ -409,9 +430,9 @@ ADD CONSTRAINT [PK_Wisdom]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'Options1'
-ALTER TABLE [dbo].[Options1]
-ADD CONSTRAINT [PK_Options1]
+-- Creating primary key on [Id] in table 'Options'
+ALTER TABLE [dbo].[Options]
+ADD CONSTRAINT [PK_Options]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -442,6 +463,12 @@ GO
 -- Creating primary key on [Id] in table 'DecisionHistories'
 ALTER TABLE [dbo].[DecisionHistories]
 ADD CONSTRAINT [PK_DecisionHistories]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'DecusionHistories'
+ALTER TABLE [dbo].[DecusionHistories]
+ADD CONSTRAINT [PK_DecusionHistories]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -602,7 +629,7 @@ GO
 ALTER TABLE [dbo].[Factors]
 ADD CONSTRAINT [FK_OptionFactor]
     FOREIGN KEY ([Option_Id])
-    REFERENCES [dbo].[Options1]
+    REFERENCES [dbo].[Options]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 
@@ -612,8 +639,8 @@ ON [dbo].[Factors]
     ([Option_Id]);
 GO
 
--- Creating foreign key on [Decision_Id] in table 'Options1'
-ALTER TABLE [dbo].[Options1]
+-- Creating foreign key on [Decision_Id] in table 'Options'
+ALTER TABLE [dbo].[Options]
 ADD CONSTRAINT [FK_DecisionOptions]
     FOREIGN KEY ([Decision_Id])
     REFERENCES [dbo].[Decisions]
@@ -622,7 +649,7 @@ ADD CONSTRAINT [FK_DecisionOptions]
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_DecisionOptions'
 CREATE INDEX [IX_FK_DecisionOptions]
-ON [dbo].[Options1]
+ON [dbo].[Options]
     ([Decision_Id]);
 GO
 
@@ -668,8 +695,8 @@ ON [dbo].[Decisions]
     ([ComplexDecision_Id]);
 GO
 
--- Creating foreign key on [Entity_Id] in table 'Options1'
-ALTER TABLE [dbo].[Options1]
+-- Creating foreign key on [Entity_Id] in table 'Options'
+ALTER TABLE [dbo].[Options]
 ADD CONSTRAINT [FK_EntityOptions]
     FOREIGN KEY ([Entity_Id])
     REFERENCES [dbo].[Entities]
@@ -678,7 +705,7 @@ ADD CONSTRAINT [FK_EntityOptions]
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_EntityOptions'
 CREATE INDEX [IX_FK_EntityOptions]
-ON [dbo].[Options1]
+ON [dbo].[Options]
     ([Entity_Id]);
 GO
 
@@ -728,7 +755,7 @@ GO
 ALTER TABLE [dbo].[Ratings]
 ADD CONSTRAINT [FK_OptionsRating]
     FOREIGN KEY ([Option_Id])
-    REFERENCES [dbo].[Options1]
+    REFERENCES [dbo].[Options]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 
@@ -806,6 +833,20 @@ ADD CONSTRAINT [FK_DecisionHistoryDecision]
 CREATE INDEX [IX_FK_DecisionHistoryDecision]
 ON [dbo].[Decisions]
     ([DecisionHistory_Id]);
+GO
+
+-- Creating foreign key on [Decision_Id] in table 'DecusionHistories'
+ALTER TABLE [dbo].[DecusionHistories]
+ADD CONSTRAINT [FK_DecisionHistory]
+    FOREIGN KEY ([Decision_Id])
+    REFERENCES [dbo].[Decisions]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_DecisionHistory'
+CREATE INDEX [IX_FK_DecisionHistory]
+ON [dbo].[DecusionHistories]
+    ([Decision_Id]);
 GO
 
 -- Creating foreign key on [Id] in table 'Entities_Group'

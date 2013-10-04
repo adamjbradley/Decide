@@ -32,11 +32,12 @@ namespace Decide
         public DbSet<Session> Sessions { get; set; }
         public DbSet<SocialIdentity> SocialIdentities { get; set; }
         public DbSet<Wisdom> Wisdom { get; set; }
-        public DbSet<Options> Options1 { get; set; }
+        public DbSet<Options> Options { get; set; }
         public DbSet<Reputation> Reputations { get; set; }
         public DbSet<ComplexDecision> ComplexDecisions { get; set; }
         public DbSet<ComplexDecisionHistory> ComplexDecisionHistories { get; set; }
         public DbSet<Rating> Ratings { get; set; }
         public DbSet<DecisionHistory> DecisionHistories { get; set; }
+        public DbSet<DecusionHistory> DecusionHistories { get; set; }
     }
 }

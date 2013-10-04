@@ -13,12 +13,13 @@
     <EntitySet Name="Sessions" EntityType="StorageModel.Store.Sessions" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SocialIdentities" EntityType="StorageModel.Store.SocialIdentities" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Wisdom" EntityType="StorageModel.Store.Wisdom" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Options1" EntityType="StorageModel.Store.Options1" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Options" EntityType="StorageModel.Store.Options" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Reputations" EntityType="StorageModel.Store.Reputations" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ComplexDecisions" EntityType="StorageModel.Store.ComplexDecisions" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ComplexDecisionHistories" EntityType="StorageModel.Store.ComplexDecisionHistories" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Ratings" EntityType="StorageModel.Store.Ratings" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="DecisionHistories" EntityType="StorageModel.Store.DecisionHistories" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DecusionHistories" EntityType="StorageModel.Store.DecusionHistories" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Entities_Group" EntityType="StorageModel.Store.Entities_Group" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Entities_Person" EntityType="StorageModel.Store.Entities_Person" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Decisions_GroupDecision" EntityType="StorageModel.Store.Decisions_GroupDecision" store:Type="Tables" Schema="dbo" />
@@ -59,12 +60,12 @@
       <End Role="Decision" EntitySet="Decisions" />
     </AssociationSet>
     <AssociationSet Name="OptionFactor" Association="StorageModel.Store.OptionFactor">
-      <End Role="Option" EntitySet="Options1" />
+      <End Role="Option" EntitySet="Options" />
       <End Role="Factor" EntitySet="Factors" />
     </AssociationSet>
     <AssociationSet Name="DecisionOptions" Association="StorageModel.Store.DecisionOptions">
       <End Role="Decision" EntitySet="Decisions" />
-      <End Role="Options" EntitySet="Options1" />
+      <End Role="Options" EntitySet="Options" />
     </AssociationSet>
     <AssociationSet Name="EntityKudos" Association="StorageModel.Store.EntityKudos">
       <End Role="Entity" EntitySet="Entities" />
@@ -80,7 +81,7 @@
     </AssociationSet>
     <AssociationSet Name="EntityOptions" Association="StorageModel.Store.EntityOptions">
       <End Role="Entity" EntitySet="Entities" />
-      <End Role="Options" EntitySet="Options1" />
+      <End Role="Options" EntitySet="Options" />
     </AssociationSet>
     <AssociationSet Name="ComplexDecisionEntity" Association="StorageModel.Store.ComplexDecisionEntity">
       <End Role="ComplexDecision" EntitySet="ComplexDecisions" />
@@ -95,7 +96,7 @@
       <End Role="Rating" EntitySet="Ratings" />
     </AssociationSet>
     <AssociationSet Name="OptionsRating" Association="StorageModel.Store.OptionsRating">
-      <End Role="Options" EntitySet="Options1" />
+      <End Role="Options" EntitySet="Options" />
       <End Role="Rating" EntitySet="Ratings" />
     </AssociationSet>
     <AssociationSet Name="EntityRating" Association="StorageModel.Store.EntityRating">
@@ -117,6 +118,10 @@
     <AssociationSet Name="DecisionHistoryDecision" Association="StorageModel.Store.DecisionHistoryDecision">
       <End Role="DecisionHistory" EntitySet="DecisionHistories" />
       <End Role="Decision" EntitySet="Decisions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DecisionHistory" Association="StorageModel.Store.FK_DecisionHistory">
+      <End Role="Decision" EntitySet="Decisions" />
+      <End Role="DecusionHistory" EntitySet="DecusionHistories" />
     </AssociationSet>
     <AssociationSet Name="FK_Group_inherits_Entity" Association="StorageModel.Store.FK_Group_inherits_Entity">
       <End Role="Entity" EntitySet="Entities" />
@@ -223,7 +228,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
-  <EntityType Name="Options1">
+  <EntityType Name="Options">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
@@ -283,6 +288,15 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Version" Type="nvarchar(max)" Nullable="false" />
     <Property Name="DateTime" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DecusionHistories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Version" Type="bigint" Nullable="false" />
+    <Property Name="DateTime" Type="datetime" Nullable="false" />
+    <Property Name="Decision_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Entities_Group">
     <Key>
@@ -412,7 +426,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="OptionFactor">
-    <End Role="Option" Type="StorageModel.Store.Options1" Multiplicity="1" />
+    <End Role="Option" Type="StorageModel.Store.Options" Multiplicity="1" />
     <End Role="Factor" Type="StorageModel.Store.Factors" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Option">
@@ -425,7 +439,7 @@
   </Association>
   <Association Name="DecisionOptions">
     <End Role="Decision" Type="StorageModel.Store.Decisions" Multiplicity="1" />
-    <End Role="Options" Type="StorageModel.Store.Options1" Multiplicity="*" />
+    <End Role="Options" Type="StorageModel.Store.Options" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Decision">
         <PropertyRef Name="Id" />
@@ -473,7 +487,7 @@
   </Association>
   <Association Name="EntityOptions">
     <End Role="Entity" Type="StorageModel.Store.Entities" Multiplicity="1" />
-    <End Role="Options" Type="StorageModel.Store.Options1" Multiplicity="*" />
+    <End Role="Options" Type="StorageModel.Store.Options" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Entity">
         <PropertyRef Name="Id" />
@@ -520,7 +534,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="OptionsRating">
-    <End Role="Options" Type="StorageModel.Store.Options1" Multiplicity="1" />
+    <End Role="Options" Type="StorageModel.Store.Options" Multiplicity="1" />
     <End Role="Rating" Type="StorageModel.Store.Ratings" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Options">
@@ -588,6 +602,18 @@
       </Principal>
       <Dependent Role="Decision">
         <PropertyRef Name="DecisionHistory_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DecisionHistory">
+    <End Role="Decision" Type="StorageModel.Store.Decisions" Multiplicity="1" />
+    <End Role="DecusionHistory" Type="StorageModel.Store.DecusionHistories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Decision">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DecusionHistory">
+        <PropertyRef Name="Decision_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -739,14 +765,14 @@
             <End Role="MyDecisions" EntitySet="Wisdom" />
             <End Role="Decision" EntitySet="Decisions" />
           </AssociationSet>
-          <EntitySet Name="Options1" EntityType="StorageModel.Options" />
+          <EntitySet Name="Options" EntityType="StorageModel.Options" />
           <AssociationSet Name="OptionFactor" Association="StorageModel.OptionFactor">
-            <End Role="Option" EntitySet="Options1" />
+            <End Role="Option" EntitySet="Options" />
             <End Role="Factor" EntitySet="Factors" />
           </AssociationSet>
           <AssociationSet Name="DecisionOptions" Association="StorageModel.DecisionOptions">
             <End Role="Decision" EntitySet="Decisions" />
-            <End Role="Options" EntitySet="Options1" />
+            <End Role="Options" EntitySet="Options" />
           </AssociationSet>
           <EntitySet Name="Reputations" EntityType="StorageModel.Reputation" />
           <AssociationSet Name="EntityKudos" Association="StorageModel.EntityKudos">
@@ -764,7 +790,7 @@
           </AssociationSet>
           <AssociationSet Name="EntityOptions" Association="StorageModel.EntityOptions">
             <End Role="Entity" EntitySet="Entities" />
-            <End Role="Options" EntitySet="Options1" />
+            <End Role="Options" EntitySet="Options" />
           </AssociationSet>
           <AssociationSet Name="ComplexDecisionEntity" Association="StorageModel.ComplexDecisionEntity">
             <End Role="ComplexDecision" EntitySet="ComplexDecisions" />
@@ -781,7 +807,7 @@
             <End Role="Rating" EntitySet="Ratings" />
           </AssociationSet>
           <AssociationSet Name="OptionsRating" Association="StorageModel.OptionsRating">
-            <End Role="Options" EntitySet="Options1" />
+            <End Role="Options" EntitySet="Options" />
             <End Role="Rating" EntitySet="Ratings" />
           </AssociationSet>
           <AssociationSet Name="EntityRating" Association="StorageModel.EntityRating">
@@ -805,6 +831,11 @@
             <End Role="DecisionHistory" EntitySet="DecisionHistories" />
             <End Role="Decision" EntitySet="Decisions" />
           </AssociationSet>
+          <EntitySet Name="DecusionHistories" EntityType="StorageModel.DecusionHistory" />
+          <AssociationSet Name="FK_DecisionHistory" Association="StorageModel.FK_DecisionHistory">
+            <End Role="Decision" EntitySet="Decisions" />
+            <End Role="DecusionHistory" EntitySet="DecusionHistories" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Decision">
           <Key>
@@ -813,22 +844,23 @@
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Boolean" Name="IsPrivate" Nullable="false" />
           <NavigationProperty Name="Entity" Relationship="StorageModel.EntityDecision" FromRole="Decision" ToRole="Entity" />
-          <Property Type="String" Name="Description" Nullable="false" />
-          <Property Type="String" Name="Name" Nullable="false" />
-          <Property Type="DateTime" Name="DateCreated" Nullable="false" />
-          <Property Type="DateTime" Name="DateModified" Nullable="false" />
-          <Property Type="String" Name="Version" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="DateModified" Nullable="false" Precision="3" />
+          <Property Type="String" Name="Version" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Wisdom" Relationship="StorageModel.MyDecisionsDecision" FromRole="Decision" ToRole="MyDecisions" />
           <Property Type="Boolean" Name="IsSocial" Nullable="false" />
           <Property Type="Boolean" Name="IsPersonal" Nullable="false" />
           <NavigationProperty Name="Options" Relationship="StorageModel.DecisionOptions" FromRole="Decision" ToRole="Options" />
           <Property Type="Boolean" Name="IsPublic" Nullable="false" />
           <NavigationProperty Name="ComplexDecision" Relationship="StorageModel.ComplexDecisionDecision" FromRole="Decision" ToRole="ComplexDecision" />
-          <Property Type="String" Name="Weight" Nullable="false" />
-          <Property Type="String" Name="IsHeart" Nullable="false" />
-          <Property Type="String" Name="IsHead" Nullable="false" />
+          <Property Type="String" Name="Weight" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="IsHeart" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="IsHead" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Ratings" Relationship="StorageModel.DecisionRating" FromRole="Decision" ToRole="Rating" />
           <NavigationProperty Name="DecisionHistory" Relationship="StorageModel.DecisionHistoryDecision" FromRole="Decision" ToRole="DecisionHistory" />
+          <NavigationProperty Name="DecusionHistories" Relationship="StorageModel.FK_DecisionHistory" FromRole="Decision" ToRole="DecusionHistory" />
         </EntityType>
         <EntityType Name="GroupDecision" BaseType="StorageModel.Decision">
           <NavigationProperty Name="Group" Relationship="StorageModel.GroupGroupDecision" FromRole="GroupDecision" ToRole="Group" />
@@ -845,15 +877,15 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" Nullable="false" />
-          <Property Type="String" Name="Description" Nullable="false" />
-          <Property Type="String" Name="Weight" Nullable="false" />
-          <Property Type="DateTime" Name="DateCreated" Nullable="false" />
-          <Property Type="DateTime" Name="DateModified" Nullable="false" />
-          <Property Type="String" Name="Version" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="Weight" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="DateModified" Nullable="false" Precision="3" />
+          <Property Type="String" Name="Version" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Option" Relationship="StorageModel.OptionFactor" FromRole="Factor" ToRole="Option" />
-          <Property Type="String" Name="IsHeart" Nullable="false" />
-          <Property Type="String" Name="IsHead" Nullable="false" />
+          <Property Type="String" Name="IsHeart" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="IsHead" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Entity" Relationship="StorageModel.EntityFactor" FromRole="Factor" ToRole="Entity" />
           <NavigationProperty Name="Ratings" Relationship="StorageModel.FactorRating" FromRole="Factor" ToRole="Rating" />
         </EntityType>
@@ -880,7 +912,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Roles" Relationship="StorageModel.EntityRole" FromRole="Entity" ToRole="Role" />
           <NavigationProperty Name="Decisions" Relationship="StorageModel.EntityDecision" FromRole="Entity" ToRole="Decision" />
           <NavigationProperty Name="Sessions" Relationship="StorageModel.EntitySession" FromRole="Entity" ToRole="Session" />
@@ -917,23 +949,23 @@
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Entity" Relationship="StorageModel.EntitySocialIdentity" FromRole="SocialIdentity" ToRole="Entity" />
-          <Property Type="String" Name="IsTwitter" Nullable="false" />
-          <Property Type="String" Name="IsFacebook" Nullable="false" />
-          <Property Type="String" Name="IsGooglePlus" Nullable="false" />
+          <Property Type="String" Name="IsTwitter" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="IsFacebook" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="IsGooglePlus" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
         </EntityType>
         <Association Name="EntitySocialIdentity">
           <End Type="StorageModel.Entity" Role="Entity" Multiplicity="1" />
           <End Type="StorageModel.SocialIdentity" Role="SocialIdentity" Multiplicity="*" />
         </Association>
         <EntityType Name="Facebook" BaseType="StorageModel.SocialIdentity">
-          <Property Type="String" Name="Identity" Nullable="false" />
-          <Property Type="String" Name="Publish" Nullable="false" />
-          <Property Type="String" Name="PublishAlways" Nullable="false" />
+          <Property Type="String" Name="Identity" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="Publish" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="PublishAlways" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
         </EntityType>
         <EntityType Name="Twitter" BaseType="StorageModel.SocialIdentity">
-          <Property Type="String" Name="Identity" Nullable="false" />
-          <Property Type="String" Name="Publish" Nullable="false" />
-          <Property Type="String" Name="PublishAlways" Nullable="false" />
+          <Property Type="String" Name="Identity" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="Publish" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="PublishAlways" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
         </EntityType>
         <EntityType Name="Wisdom">
           <Key>
@@ -947,9 +979,9 @@
           <End Type="StorageModel.Decision" Role="Decision" Multiplicity="*" />
         </Association>
         <EntityType Name="GooglePlus" BaseType="StorageModel.SocialIdentity">
-          <Property Type="String" Name="Identity" Nullable="false" />
-          <Property Type="String" Name="Publish" Nullable="false" />
-          <Property Type="String" Name="PublishAlways" Nullable="false" />
+          <Property Type="String" Name="Identity" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="Publish" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="PublishAlways" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
         </EntityType>
         <EntityType Name="Options">
           <Key>
@@ -958,15 +990,15 @@
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Factors" Relationship="StorageModel.OptionFactor" FromRole="Option" ToRole="Factor" />
           <NavigationProperty Name="Decision" Relationship="StorageModel.DecisionOptions" FromRole="Options" ToRole="Decision" />
-          <Property Type="DateTime" Name="DateCreated" Nullable="false" />
-          <Property Type="DateTime" Name="DateModified" Nullable="false" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="DateModified" Nullable="false" Precision="3" />
           <Property Type="Boolean" Name="IsMostPopular" Nullable="false" />
           <Property Type="Boolean" Name="IsLeastPopular" Nullable="false" />
-          <Property Type="String" Name="Version" Nullable="false" />
+          <Property Type="String" Name="Version" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Type="Boolean" Name="Chosen" Nullable="false" />
-          <Property Type="DateTime" Name="TimeSelected" Nullable="false" />
-          <Property Type="String" Name="IsHeart" Nullable="false" />
-          <Property Type="String" Name="IsHead" Nullable="false" />
+          <Property Type="DateTime" Name="TimeSelected" Nullable="false" Precision="3" />
+          <Property Type="String" Name="IsHeart" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="IsHead" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Entity" Relationship="StorageModel.EntityOptions" FromRole="Options" ToRole="Entity" />
           <NavigationProperty Name="Ratings" Relationship="StorageModel.OptionsRating" FromRole="Options" ToRole="Rating" />
         </EntityType>
@@ -1023,7 +1055,7 @@
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="ComplexDecisions" Relationship="StorageModel.ComplexDecisionHistoryComplexDecision" FromRole="ComplexDecisionHistory" ToRole="ComplexDecision" />
           <Property Type="Int64" Name="Version" Nullable="false" />
-          <Property Type="DateTime" Name="DateTime" Nullable="false" />
+          <Property Type="DateTime" Name="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <Association Name="ComplexDecisionHistoryComplexDecision">
           <End Type="StorageModel.ComplexDecisionHistory" Role="ComplexDecisionHistory" Multiplicity="1" />
@@ -1035,8 +1067,8 @@
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Decision" Relationship="StorageModel.DecisionRating" FromRole="Rating" ToRole="Decision" />
-          <Property Type="String" Name="Summary" Nullable="false" />
-          <Property Type="String" Name="Description" Nullable="false" />
+          <Property Type="String" Name="Summary" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Type="Int64" Name="Value" Nullable="false" />
           <NavigationProperty Name="Option" Relationship="StorageModel.OptionsRating" FromRole="Rating" ToRole="Options" />
           <NavigationProperty Name="Entity" Relationship="StorageModel.EntityRating" FromRole="Rating" ToRole="Entity" />
@@ -1073,12 +1105,34 @@
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Decisions" Relationship="StorageModel.DecisionHistoryDecision" FromRole="DecisionHistory" ToRole="Decision" />
-          <Property Type="String" Name="Version" Nullable="false" />
-          <Property Type="String" Name="DateTime" Nullable="false" />
+          <Property Type="String" Name="Version" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="DateTime" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
         </EntityType>
         <Association Name="DecisionHistoryDecision">
           <End Type="StorageModel.DecisionHistory" Role="DecisionHistory" Multiplicity="1" />
           <End Type="StorageModel.Decision" Role="Decision" Multiplicity="*" />
+        </Association>
+        <EntityType Name="DecusionHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="Version" Nullable="false" />
+          <Property Type="DateTime" Name="DateTime" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="Decision_Id" Nullable="false" />
+          <NavigationProperty Name="Decision" Relationship="StorageModel.FK_DecisionHistory" FromRole="DecusionHistory" ToRole="Decision" />
+        </EntityType>
+        <Association Name="FK_DecisionHistory">
+          <End Type="StorageModel.Decision" Role="Decision" Multiplicity="1" />
+          <End Type="StorageModel.DecusionHistory" Role="DecusionHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Decision">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DecusionHistory">
+              <PropertyRef Name="Decision_Id" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -1201,9 +1255,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Options1">
+    <EntitySetMapping Name="Options">
       <EntityTypeMapping TypeName="IsTypeOf(StorageModel.Options)">
-        <MappingFragment StoreEntitySet="Options1">
+        <MappingFragment StoreEntitySet="Options">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
           <ScalarProperty Name="DateModified" ColumnName="DateModified" />
@@ -1257,6 +1311,16 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Version" ColumnName="Version" />
           <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DecusionHistories">
+      <EntityTypeMapping TypeName="IsTypeOf(StorageModel.DecusionHistory)">
+        <MappingFragment StoreEntitySet="DecusionHistories">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Version" ColumnName="Version" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="Decision_Id" ColumnName="Decision_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1324,7 +1388,7 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="DecisionOptions" TypeName="StorageModel.DecisionOptions" StoreEntitySet="Options1">
+    <AssociationSetMapping Name="DecisionOptions" TypeName="StorageModel.DecisionOptions" StoreEntitySet="Options">
       <EndProperty Name="Decision">
         <ScalarProperty Name="Id" ColumnName="Decision_Id" />
       </EndProperty>
@@ -1356,7 +1420,7 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="EntityOptions" TypeName="StorageModel.EntityOptions" StoreEntitySet="Options1">
+    <AssociationSetMapping Name="EntityOptions" TypeName="StorageModel.EntityOptions" StoreEntitySet="Options">
       <EndProperty Name="Entity">
         <ScalarProperty Name="Id" ColumnName="Entity_Id" />
       </EndProperty>
@@ -1451,6 +1515,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
       </DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->

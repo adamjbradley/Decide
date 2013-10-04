@@ -19,6 +19,7 @@ namespace Decide
             this.Entity = new HashSet<Entity>();
             this.Options = new HashSet<Options>();
             this.Ratings = new HashSet<Rating>();
+            this.DecusionHistories = new HashSet<DecusionHistory>();
         }
     
         public int Id { get; set; }
@@ -41,5 +42,6 @@ namespace Decide
         public virtual ComplexDecision ComplexDecision { get; set; }
         public virtual ICollection<Rating> Ratings { get; set; }
         public virtual DecisionHistory DecisionHistory { get; set; }
+        public virtual ICollection<DecusionHistory> DecusionHistories { get; set; }
     }
 }
