@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6baadcbb3dca4805909cfd64b3e732fc" Name="Model" ZoomLevel="85" >
+        <EntityTypeShape EntityType="StorageModel.Decision" Width="1.5" PointX="3.5" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageModel.GroupDecision" Width="1.5" PointX="3.5" PointY="0.5" />
+        <EntityTypeShape EntityType="StorageModel.Person" Width="1.5" PointX="7.25" PointY="0.5" />
+        <EntityTypeShape EntityType="StorageModel.Group" Width="1.5" PointX="5.375" PointY="0.5" />
+        <EntityTypeShape EntityType="StorageModel.Factor" Width="1.5" PointX="7.25" PointY="10.375" />
+        <AssociationConnector Association="StorageModel.GroupPerson" />
+        <AssociationConnector Association="StorageModel.GroupGroupDecision" />
+        <InheritanceConnector EntityType="StorageModel.GroupDecision" />
+        <EntityTypeShape EntityType="StorageModel.Role" Width="1.5" PointX="13.5" PointY="6.5" />
+        <EntityTypeShape EntityType="StorageModel.Entity" Width="1.5" PointX="7.25" PointY="5.25" />
+        <InheritanceConnector EntityType="StorageModel.Group" />
+        <InheritanceConnector EntityType="StorageModel.Person" />
+        <AssociationConnector Association="StorageModel.EntityRole" ></AssociationConnector>
+        <AssociationConnector Association="StorageModel.EntityDecision" />
+        <EntityTypeShape EntityType="StorageModel.Session" Width="1.5" PointX="11.75" PointY="6.125" />
+        <AssociationConnector Association="StorageModel.EntitySession" />
+        <EntityTypeShape EntityType="StorageModel.SocialIdentity" Width="1.5" PointX="10" PointY="3.75" />
+        <AssociationConnector Association="StorageModel.EntitySocialIdentity" />
+        <EntityTypeShape EntityType="StorageModel.Facebook" Width="1.5" PointX="11.75" PointY="2.5" />
+        <EntityTypeShape EntityType="StorageModel.Twitter" Width="1.5" PointX="10" PointY="1.75" />
+        <InheritanceConnector EntityType="StorageModel.Facebook" />
+        <InheritanceConnector EntityType="StorageModel.Twitter" />
+        <InheritanceConnector EntityType="StorageModel.Facebook" />
+        <InheritanceConnector EntityType="StorageModel.Twitter" />
+        <EntityTypeShape EntityType="StorageModel.Wisdom" Width="1.5" PointX="1.625" PointY="1.375" />
+        <AssociationConnector Association="StorageModel.MyDecisionsDecision" />
+        <EntityTypeShape EntityType="StorageModel.GooglePlus" Width="1.5" PointX="13.5" PointY="2.75" />
+        <InheritanceConnector EntityType="StorageModel.GooglePlus" />
+        <EntityTypeShape EntityType="StorageModel.Options" Width="1.5" PointX="3.5" PointY="7.75" />
+        <AssociationConnector Association="StorageModel.OptionFactor" />
+        <AssociationConnector Association="StorageModel.DecisionOptions" />
+        <EntityTypeShape EntityType="StorageModel.Reputation" Width="1.5" PointX="9.375" PointY="6.875" />
+        <AssociationConnector Association="StorageModel.EntityKudos" />
+        <AssociationConnector Association="StorageModel.EntityEntity" />
+        <EntityTypeShape EntityType="StorageModel.ComplexDecision" Width="1.5" PointX="5.375" PointY="4.5" />
+        <AssociationConnector Association="StorageModel.ComplexDecisionDecision" />
+        <AssociationConnector Association="StorageModel.EntityOptions" />
+        <AssociationConnector Association="StorageModel.ComplexDecisionEntity" />
+        <EntityTypeShape EntityType="StorageModel.ComplexDecisionHistory" Width="1.5" PointX="5.375" PointY="2.375" />
+        <AssociationConnector Association="StorageModel.ComplexDecisionHistoryComplexDecision" />
+        <EntityTypeShape EntityType="StorageModel.Rating" Width="1.5" PointX="5.375" PointY="8.125" />
+        <AssociationConnector Association="StorageModel.DecisionRating" />
+        <AssociationConnector Association="StorageModel.OptionsRating" />
+        <AssociationConnector Association="StorageModel.EntityRating" />
+        <AssociationConnector Association="StorageModel.EntityFactor" />
+        <AssociationConnector Association="StorageModel.FactorRating" />
+        <AssociationConnector Association="StorageModel.ComplexDecisionRating" />
+        <EntityTypeShape EntityType="StorageModel.DecisionHistory" Width="1.5" PointX="1.625" PointY="5.25" />
+        <AssociationConnector Association="StorageModel.DecisionHistoryDecision" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,1460 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="StorageModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="StorageModelStoreContainer">
+    <EntitySet Name="Factors" EntityType="StorageModel.Store.Factors" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Decisions" EntityType="StorageModel.Store.Decisions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Roles" EntityType="StorageModel.Store.Roles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Entities" EntityType="StorageModel.Store.Entities" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sessions" EntityType="StorageModel.Store.Sessions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SocialIdentities" EntityType="StorageModel.Store.SocialIdentities" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Wisdom" EntityType="StorageModel.Store.Wisdom" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Options1" EntityType="StorageModel.Store.Options1" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Reputations" EntityType="StorageModel.Store.Reputations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ComplexDecisions" EntityType="StorageModel.Store.ComplexDecisions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ComplexDecisionHistories" EntityType="StorageModel.Store.ComplexDecisionHistories" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Ratings" EntityType="StorageModel.Store.Ratings" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DecisionHistories" EntityType="StorageModel.Store.DecisionHistories" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Entities_Group" EntityType="StorageModel.Store.Entities_Group" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Entities_Person" EntityType="StorageModel.Store.Entities_Person" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Decisions_GroupDecision" EntityType="StorageModel.Store.Decisions_GroupDecision" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SocialIdentities_Facebook" EntityType="StorageModel.Store.SocialIdentities_Facebook" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SocialIdentities_Twitter" EntityType="StorageModel.Store.SocialIdentities_Twitter" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SocialIdentities_GooglePlus" EntityType="StorageModel.Store.SocialIdentities_GooglePlus" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EntityDecision" EntityType="StorageModel.Store.EntityDecision" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="GroupPerson" Association="StorageModel.Store.GroupPerson">
+      <End Role="Group" EntitySet="Entities_Group" />
+      <End Role="Person" EntitySet="Entities_Person" />
+    </AssociationSet>
+    <AssociationSet Name="GroupGroupDecision" Association="StorageModel.Store.GroupGroupDecision">
+      <End Role="Group" EntitySet="Entities_Group" />
+      <End Role="GroupDecision" EntitySet="Decisions_GroupDecision" />
+    </AssociationSet>
+    <AssociationSet Name="EntityRole" Association="StorageModel.Store.EntityRole">
+      <End Role="Entity" EntitySet="Entities" />
+      <End Role="Role" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EntityDecision_Entity" Association="StorageModel.Store.FK_EntityDecision_Entity">
+      <End Role="Entity" EntitySet="Entities" />
+      <End Role="EntityDecision" EntitySet="EntityDecision" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EntityDecision_Decision" Association="StorageModel.Store.FK_EntityDecision_Decision">
+      <End Role="Decision" EntitySet="Decisions" />
+      <End Role="EntityDecision" EntitySet="EntityDecision" />
+    </AssociationSet>
+    <AssociationSet Name="EntitySession" Association="StorageModel.Store.EntitySession">
+      <End Role="Entity" EntitySet="Entities" />
+      <End Role="Session" EntitySet="Sessions" />
+    </AssociationSet>
+    <AssociationSet Name="EntitySocialIdentity" Association="StorageModel.Store.EntitySocialIdentity">
+      <End Role="Entity" EntitySet="Entities" />
+      <End Role="SocialIdentity" EntitySet="SocialIdentities" />
+    </AssociationSet>
+    <AssociationSet Name="MyDecisionsDecision" Association="StorageModel.Store.MyDecisionsDecision">
+      <End Role="MyDecisions" EntitySet="Wisdom" />
+      <End Role="Decision" EntitySet="Decisions" />
+    </AssociationSet>
+    <AssociationSet Name="OptionFactor" Association="StorageModel.Store.OptionFactor">
+      <End Role="Option" EntitySet="Options1" />
+      <End Role="Factor" EntitySet="Factors" />
+    </AssociationSet>
+    <AssociationSet Name="DecisionOptions" Association="StorageModel.Store.DecisionOptions">
+      <End Role="Decision" EntitySet="Decisions" />
+      <End Role="Options" EntitySet="Options1" />
+    </AssociationSet>
+    <AssociationSet Name="EntityKudos" Association="StorageModel.Store.EntityKudos">
+      <End Role="Entity" EntitySet="Entities" />
+      <End Role="Kudos" EntitySet="Reputations" />
+    </AssociationSet>
+    <AssociationSet Name="EntityEntity" Association="StorageModel.Store.EntityEntity">
+      <End Role="Entity" EntitySet="Entities" />
+      <End Role="Entity1" EntitySet="Entities" />
+    </AssociationSet>
+    <AssociationSet Name="ComplexDecisionDecision" Association="StorageModel.Store.ComplexDecisionDecision">
+      <End Role="ComplexDecision" EntitySet="ComplexDecisions" />
+      <End Role="Decision" EntitySet="Decisions" />
+    </AssociationSet>
+    <AssociationSet Name="EntityOptions" Association="StorageModel.Store.EntityOptions">
+      <End Role="Entity" EntitySet="Entities" />
+      <End Role="Options" EntitySet="Options1" />
+    </AssociationSet>
+    <AssociationSet Name="ComplexDecisionEntity" Association="StorageModel.Store.ComplexDecisionEntity">
+      <End Role="ComplexDecision" EntitySet="ComplexDecisions" />
+      <End Role="Entity" EntitySet="Entities" />
+    </AssociationSet>
+    <AssociationSet Name="ComplexDecisionHistoryComplexDecision" Association="StorageModel.Store.ComplexDecisionHistoryComplexDecision">
+      <End Role="ComplexDecisionHistory" EntitySet="ComplexDecisionHistories" />
+      <End Role="ComplexDecision" EntitySet="ComplexDecisions" />
+    </AssociationSet>
+    <AssociationSet Name="DecisionRating" Association="StorageModel.Store.DecisionRating">
+      <End Role="Decision" EntitySet="Decisions" />
+      <End Role="Rating" EntitySet="Ratings" />
+    </AssociationSet>
+    <AssociationSet Name="OptionsRating" Association="StorageModel.Store.OptionsRating">
+      <End Role="Options" EntitySet="Options1" />
+      <End Role="Rating" EntitySet="Ratings" />
+    </AssociationSet>
+    <AssociationSet Name="EntityRating" Association="StorageModel.Store.EntityRating">
+      <End Role="Entity" EntitySet="Entities" />
+      <End Role="Rating" EntitySet="Ratings" />
+    </AssociationSet>
+    <AssociationSet Name="EntityFactor" Association="StorageModel.Store.EntityFactor">
+      <End Role="Entity" EntitySet="Entities" />
+      <End Role="Factor" EntitySet="Factors" />
+    </AssociationSet>
+    <AssociationSet Name="FactorRating" Association="StorageModel.Store.FactorRating">
+      <End Role="Factor" EntitySet="Factors" />
+      <End Role="Rating" EntitySet="Ratings" />
+    </AssociationSet>
+    <AssociationSet Name="ComplexDecisionRating" Association="StorageModel.Store.ComplexDecisionRating">
+      <End Role="ComplexDecision" EntitySet="ComplexDecisions" />
+      <End Role="Rating" EntitySet="Ratings" />
+    </AssociationSet>
+    <AssociationSet Name="DecisionHistoryDecision" Association="StorageModel.Store.DecisionHistoryDecision">
+      <End Role="DecisionHistory" EntitySet="DecisionHistories" />
+      <End Role="Decision" EntitySet="Decisions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Group_inherits_Entity" Association="StorageModel.Store.FK_Group_inherits_Entity">
+      <End Role="Entity" EntitySet="Entities" />
+      <End Role="Group" EntitySet="Entities_Group" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Person_inherits_Entity" Association="StorageModel.Store.FK_Person_inherits_Entity">
+      <End Role="Entity" EntitySet="Entities" />
+      <End Role="Person" EntitySet="Entities_Person" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GroupDecision_inherits_Decision" Association="StorageModel.Store.FK_GroupDecision_inherits_Decision">
+      <End Role="Decision" EntitySet="Decisions" />
+      <End Role="GroupDecision" EntitySet="Decisions_GroupDecision" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Facebook_inherits_SocialIdentity" Association="StorageModel.Store.FK_Facebook_inherits_SocialIdentity">
+      <End Role="SocialIdentity" EntitySet="SocialIdentities" />
+      <End Role="Facebook" EntitySet="SocialIdentities_Facebook" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Twitter_inherits_SocialIdentity" Association="StorageModel.Store.FK_Twitter_inherits_SocialIdentity">
+      <End Role="SocialIdentity" EntitySet="SocialIdentities" />
+      <End Role="Twitter" EntitySet="SocialIdentities_Twitter" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GooglePlus_inherits_SocialIdentity" Association="StorageModel.Store.FK_GooglePlus_inherits_SocialIdentity">
+      <End Role="SocialIdentity" EntitySet="SocialIdentities" />
+      <End Role="GooglePlus" EntitySet="SocialIdentities_GooglePlus" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Factors">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Weight" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
+    <Property Name="DateModified" Type="datetime" Nullable="false" />
+    <Property Name="Version" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsHeart" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsHead" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Option_Id" Type="int" Nullable="false" />
+    <Property Name="Entity_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Decisions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IsPrivate" Type="bit" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
+    <Property Name="DateModified" Type="datetime" Nullable="false" />
+    <Property Name="Version" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsSocial" Type="bit" Nullable="false" />
+    <Property Name="IsPersonal" Type="bit" Nullable="false" />
+    <Property Name="IsPublic" Type="bit" Nullable="false" />
+    <Property Name="Weight" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsHeart" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsHead" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Wisdom_Id" Type="int" Nullable="false" />
+    <Property Name="ComplexDecision_Id" Type="int" Nullable="false" />
+    <Property Name="DecisionHistory_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IsGlobalAdmin" Type="bit" Nullable="false" />
+    <Property Name="IsAuthenticated" Type="bit" Nullable="false" />
+    <Property Name="IsTrusted" Type="bit" Nullable="false" />
+    <Property Name="Entity_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Entities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Reputation_Id" Type="int" Nullable="false" />
+    <Property Name="EntityEntity_Entity1_Id" Type="int" Nullable="false" />
+    <Property Name="ComplexDecisions_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sessions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Entity_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SocialIdentities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IsTwitter" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsFacebook" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsGooglePlus" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Entity_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Wisdom">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Options1">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
+    <Property Name="DateModified" Type="datetime" Nullable="false" />
+    <Property Name="IsMostPopular" Type="bit" Nullable="false" />
+    <Property Name="IsLeastPopular" Type="bit" Nullable="false" />
+    <Property Name="Version" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Chosen" Type="bit" Nullable="false" />
+    <Property Name="TimeSelected" Type="datetime" Nullable="false" />
+    <Property Name="IsHeart" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsHead" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Decision_Id" Type="int" Nullable="false" />
+    <Property Name="Entity_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Reputations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Score" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ComplexDecisions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ComplexDecisionHistory_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ComplexDecisionHistories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Version" Type="bigint" Nullable="false" />
+    <Property Name="DateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ratings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Summary" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Value" Type="bigint" Nullable="false" />
+    <Property Name="Decision_Id" Type="int" Nullable="false" />
+    <Property Name="Option_Id" Type="int" Nullable="false" />
+    <Property Name="Entity_Id" Type="int" Nullable="false" />
+    <Property Name="Factor_Id" Type="int" Nullable="false" />
+    <Property Name="ComplexDecision_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DecisionHistories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Version" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateTime" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Entities_Group">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Entities_Person">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Group_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Decisions_GroupDecision">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Group_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SocialIdentities_Facebook">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Identity" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Publish" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PublishAlways" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SocialIdentities_Twitter">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Identity" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Publish" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PublishAlways" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SocialIdentities_GooglePlus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Identity" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Publish" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PublishAlways" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EntityDecision">
+    <Key>
+      <PropertyRef Name="Entity_Id" />
+      <PropertyRef Name="Decisions_Id" />
+    </Key>
+    <Property Name="Entity_Id" Type="int" Nullable="false" />
+    <Property Name="Decisions_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="GroupPerson">
+    <End Role="Group" Type="StorageModel.Store.Entities_Group" Multiplicity="1" />
+    <End Role="Person" Type="StorageModel.Store.Entities_Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="Group_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GroupGroupDecision">
+    <End Role="Group" Type="StorageModel.Store.Entities_Group" Multiplicity="1" />
+    <End Role="GroupDecision" Type="StorageModel.Store.Decisions_GroupDecision" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GroupDecision">
+        <PropertyRef Name="Group_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EntityRole">
+    <End Role="Entity" Type="StorageModel.Store.Entities" Multiplicity="1" />
+    <End Role="Role" Type="StorageModel.Store.Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Role">
+        <PropertyRef Name="Entity_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EntitySession">
+    <End Role="Entity" Type="StorageModel.Store.Entities" Multiplicity="1" />
+    <End Role="Session" Type="StorageModel.Store.Sessions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Session">
+        <PropertyRef Name="Entity_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EntitySocialIdentity">
+    <End Role="Entity" Type="StorageModel.Store.Entities" Multiplicity="1" />
+    <End Role="SocialIdentity" Type="StorageModel.Store.SocialIdentities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SocialIdentity">
+        <PropertyRef Name="Entity_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MyDecisionsDecision">
+    <End Role="MyDecisions" Type="StorageModel.Store.Wisdom" Multiplicity="1" />
+    <End Role="Decision" Type="StorageModel.Store.Decisions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MyDecisions">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Decision">
+        <PropertyRef Name="Wisdom_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OptionFactor">
+    <End Role="Option" Type="StorageModel.Store.Options1" Multiplicity="1" />
+    <End Role="Factor" Type="StorageModel.Store.Factors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Option">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Factor">
+        <PropertyRef Name="Option_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DecisionOptions">
+    <End Role="Decision" Type="StorageModel.Store.Decisions" Multiplicity="1" />
+    <End Role="Options" Type="StorageModel.Store.Options1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Decision">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Options">
+        <PropertyRef Name="Decision_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EntityKudos">
+    <End Role="Entity" Type="StorageModel.Store.Entities" Multiplicity="*" />
+    <End Role="Kudos" Type="StorageModel.Store.Reputations" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Kudos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Entity">
+        <PropertyRef Name="Reputation_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EntityEntity">
+    <End Role="Entity" Type="StorageModel.Store.Entities" Multiplicity="1" />
+    <End Role="Entity1" Type="StorageModel.Store.Entities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Entity1">
+        <PropertyRef Name="EntityEntity_Entity1_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ComplexDecisionDecision">
+    <End Role="ComplexDecision" Type="StorageModel.Store.ComplexDecisions" Multiplicity="1" />
+    <End Role="Decision" Type="StorageModel.Store.Decisions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ComplexDecision">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Decision">
+        <PropertyRef Name="ComplexDecision_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EntityOptions">
+    <End Role="Entity" Type="StorageModel.Store.Entities" Multiplicity="1" />
+    <End Role="Options" Type="StorageModel.Store.Options1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Options">
+        <PropertyRef Name="Entity_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ComplexDecisionEntity">
+    <End Role="ComplexDecision" Type="StorageModel.Store.ComplexDecisions" Multiplicity="1" />
+    <End Role="Entity" Type="StorageModel.Store.Entities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ComplexDecision">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Entity">
+        <PropertyRef Name="ComplexDecisions_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ComplexDecisionHistoryComplexDecision">
+    <End Role="ComplexDecisionHistory" Type="StorageModel.Store.ComplexDecisionHistories" Multiplicity="1" />
+    <End Role="ComplexDecision" Type="StorageModel.Store.ComplexDecisions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ComplexDecisionHistory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ComplexDecision">
+        <PropertyRef Name="ComplexDecisionHistory_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DecisionRating">
+    <End Role="Decision" Type="StorageModel.Store.Decisions" Multiplicity="1" />
+    <End Role="Rating" Type="StorageModel.Store.Ratings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Decision">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rating">
+        <PropertyRef Name="Decision_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OptionsRating">
+    <End Role="Options" Type="StorageModel.Store.Options1" Multiplicity="1" />
+    <End Role="Rating" Type="StorageModel.Store.Ratings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Options">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rating">
+        <PropertyRef Name="Option_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EntityRating">
+    <End Role="Entity" Type="StorageModel.Store.Entities" Multiplicity="1" />
+    <End Role="Rating" Type="StorageModel.Store.Ratings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rating">
+        <PropertyRef Name="Entity_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EntityFactor">
+    <End Role="Entity" Type="StorageModel.Store.Entities" Multiplicity="1" />
+    <End Role="Factor" Type="StorageModel.Store.Factors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Factor">
+        <PropertyRef Name="Entity_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FactorRating">
+    <End Role="Factor" Type="StorageModel.Store.Factors" Multiplicity="1" />
+    <End Role="Rating" Type="StorageModel.Store.Ratings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Factor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rating">
+        <PropertyRef Name="Factor_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ComplexDecisionRating">
+    <End Role="ComplexDecision" Type="StorageModel.Store.ComplexDecisions" Multiplicity="1" />
+    <End Role="Rating" Type="StorageModel.Store.Ratings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ComplexDecision">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rating">
+        <PropertyRef Name="ComplexDecision_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DecisionHistoryDecision">
+    <End Role="DecisionHistory" Type="StorageModel.Store.DecisionHistories" Multiplicity="1" />
+    <End Role="Decision" Type="StorageModel.Store.Decisions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DecisionHistory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Decision">
+        <PropertyRef Name="DecisionHistory_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EntityDecision_Entity">
+    <End Role="Entity" Type="StorageModel.Store.Entities" Multiplicity="1" />
+    <End Role="EntityDecision" Type="StorageModel.Store.EntityDecision" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EntityDecision">
+        <PropertyRef Name="Entity_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EntityDecision_Decision">
+    <End Role="EntityDecision" Type="StorageModel.Store.EntityDecision" Multiplicity="*" />
+    <End Role="Decision" Type="StorageModel.Store.Decisions" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Decision">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EntityDecision">
+        <PropertyRef Name="Decisions_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Group_inherits_Entity">
+    <End Role="Entity" Type="StorageModel.Store.Entities" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Group" Type="StorageModel.Store.Entities_Group" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Entity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Group">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Person_inherits_Entity">
+    <End Role="Entity" Type="StorageModel.Store.Entities" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Person" Type="StorageModel.Store.Entities_Person" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Entity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GroupDecision_inherits_Decision">
+    <End Role="Decision" Type="StorageModel.Store.Decisions" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="GroupDecision" Type="StorageModel.Store.Decisions_GroupDecision" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Decision">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GroupDecision">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Facebook_inherits_SocialIdentity">
+    <End Role="SocialIdentity" Type="StorageModel.Store.SocialIdentities" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Facebook" Type="StorageModel.Store.SocialIdentities_Facebook" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="SocialIdentity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Facebook">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Twitter_inherits_SocialIdentity">
+    <End Role="SocialIdentity" Type="StorageModel.Store.SocialIdentities" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Twitter" Type="StorageModel.Store.SocialIdentities_Twitter" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="SocialIdentity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Twitter">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GooglePlus_inherits_SocialIdentity">
+    <End Role="SocialIdentity" Type="StorageModel.Store.SocialIdentities" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="GooglePlus" Type="StorageModel.Store.SocialIdentities_GooglePlus" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="SocialIdentity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GooglePlus">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="StorageModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="StorageModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Factors" EntityType="StorageModel.Factor" />
+          <EntitySet Name="Decisions" EntityType="StorageModel.Decision" />
+          <AssociationSet Name="GroupPerson" Association="StorageModel.GroupPerson">
+            <End Role="Group" EntitySet="Entities" />
+            <End Role="Person" EntitySet="Entities" />
+          </AssociationSet>
+          <AssociationSet Name="GroupGroupDecision" Association="StorageModel.GroupGroupDecision">
+            <End Role="Group" EntitySet="Entities" />
+            <End Role="GroupDecision" EntitySet="Decisions" />
+          </AssociationSet>
+          <EntitySet Name="Roles" EntityType="StorageModel.Role" />
+          <EntitySet Name="Entities" EntityType="StorageModel.Entity" />
+          <AssociationSet Name="EntityRole" Association="StorageModel.EntityRole">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="Role" EntitySet="Roles" />
+          </AssociationSet>
+          <AssociationSet Name="EntityDecision" Association="StorageModel.EntityDecision">
+            <End EntitySet="Entities" Role="Entity" />
+            <End EntitySet="Decisions" Role="Decision" />
+          </AssociationSet>
+          <EntitySet Name="Sessions" EntityType="StorageModel.Session" />
+          <AssociationSet Name="EntitySession" Association="StorageModel.EntitySession">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="Session" EntitySet="Sessions" />
+          </AssociationSet>
+          <EntitySet Name="SocialIdentities" EntityType="StorageModel.SocialIdentity" />
+          <AssociationSet Name="EntitySocialIdentity" Association="StorageModel.EntitySocialIdentity">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="SocialIdentity" EntitySet="SocialIdentities" />
+          </AssociationSet>
+          <EntitySet Name="Wisdom" EntityType="StorageModel.Wisdom" />
+          <AssociationSet Name="MyDecisionsDecision" Association="StorageModel.MyDecisionsDecision">
+            <End Role="MyDecisions" EntitySet="Wisdom" />
+            <End Role="Decision" EntitySet="Decisions" />
+          </AssociationSet>
+          <EntitySet Name="Options1" EntityType="StorageModel.Options" />
+          <AssociationSet Name="OptionFactor" Association="StorageModel.OptionFactor">
+            <End Role="Option" EntitySet="Options1" />
+            <End Role="Factor" EntitySet="Factors" />
+          </AssociationSet>
+          <AssociationSet Name="DecisionOptions" Association="StorageModel.DecisionOptions">
+            <End Role="Decision" EntitySet="Decisions" />
+            <End Role="Options" EntitySet="Options1" />
+          </AssociationSet>
+          <EntitySet Name="Reputations" EntityType="StorageModel.Reputation" />
+          <AssociationSet Name="EntityKudos" Association="StorageModel.EntityKudos">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="Kudos" EntitySet="Reputations" />
+          </AssociationSet>
+          <AssociationSet Name="EntityEntity" Association="StorageModel.EntityEntity">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="Entity1" EntitySet="Entities" />
+          </AssociationSet>
+          <EntitySet Name="ComplexDecisions" EntityType="StorageModel.ComplexDecision" />
+          <AssociationSet Name="ComplexDecisionDecision" Association="StorageModel.ComplexDecisionDecision">
+            <End Role="ComplexDecision" EntitySet="ComplexDecisions" />
+            <End Role="Decision" EntitySet="Decisions" />
+          </AssociationSet>
+          <AssociationSet Name="EntityOptions" Association="StorageModel.EntityOptions">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="Options" EntitySet="Options1" />
+          </AssociationSet>
+          <AssociationSet Name="ComplexDecisionEntity" Association="StorageModel.ComplexDecisionEntity">
+            <End Role="ComplexDecision" EntitySet="ComplexDecisions" />
+            <End Role="Entity" EntitySet="Entities" />
+          </AssociationSet>
+          <EntitySet Name="ComplexDecisionHistories" EntityType="StorageModel.ComplexDecisionHistory" />
+          <AssociationSet Name="ComplexDecisionHistoryComplexDecision" Association="StorageModel.ComplexDecisionHistoryComplexDecision">
+            <End Role="ComplexDecisionHistory" EntitySet="ComplexDecisionHistories" />
+            <End Role="ComplexDecision" EntitySet="ComplexDecisions" />
+          </AssociationSet>
+          <EntitySet Name="Ratings" EntityType="StorageModel.Rating" />
+          <AssociationSet Name="DecisionRating" Association="StorageModel.DecisionRating">
+            <End Role="Decision" EntitySet="Decisions" />
+            <End Role="Rating" EntitySet="Ratings" />
+          </AssociationSet>
+          <AssociationSet Name="OptionsRating" Association="StorageModel.OptionsRating">
+            <End Role="Options" EntitySet="Options1" />
+            <End Role="Rating" EntitySet="Ratings" />
+          </AssociationSet>
+          <AssociationSet Name="EntityRating" Association="StorageModel.EntityRating">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="Rating" EntitySet="Ratings" />
+          </AssociationSet>
+          <AssociationSet Name="EntityFactor" Association="StorageModel.EntityFactor">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="Factor" EntitySet="Factors" />
+          </AssociationSet>
+          <AssociationSet Name="FactorRating" Association="StorageModel.FactorRating">
+            <End Role="Factor" EntitySet="Factors" />
+            <End Role="Rating" EntitySet="Ratings" />
+          </AssociationSet>
+          <AssociationSet Name="ComplexDecisionRating" Association="StorageModel.ComplexDecisionRating">
+            <End Role="ComplexDecision" EntitySet="ComplexDecisions" />
+            <End Role="Rating" EntitySet="Ratings" />
+          </AssociationSet>
+          <EntitySet Name="DecisionHistories" EntityType="StorageModel.DecisionHistory" />
+          <AssociationSet Name="DecisionHistoryDecision" Association="StorageModel.DecisionHistoryDecision">
+            <End Role="DecisionHistory" EntitySet="DecisionHistories" />
+            <End Role="Decision" EntitySet="Decisions" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Decision">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="IsPrivate" Nullable="false" />
+          <NavigationProperty Name="Entity" Relationship="StorageModel.EntityDecision" FromRole="Decision" ToRole="Entity" />
+          <Property Type="String" Name="Description" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" />
+          <Property Type="DateTime" Name="DateModified" Nullable="false" />
+          <Property Type="String" Name="Version" Nullable="false" />
+          <NavigationProperty Name="Wisdom" Relationship="StorageModel.MyDecisionsDecision" FromRole="Decision" ToRole="MyDecisions" />
+          <Property Type="Boolean" Name="IsSocial" Nullable="false" />
+          <Property Type="Boolean" Name="IsPersonal" Nullable="false" />
+          <NavigationProperty Name="Options" Relationship="StorageModel.DecisionOptions" FromRole="Decision" ToRole="Options" />
+          <Property Type="Boolean" Name="IsPublic" Nullable="false" />
+          <NavigationProperty Name="ComplexDecision" Relationship="StorageModel.ComplexDecisionDecision" FromRole="Decision" ToRole="ComplexDecision" />
+          <Property Type="String" Name="Weight" Nullable="false" />
+          <Property Type="String" Name="IsHeart" Nullable="false" />
+          <Property Type="String" Name="IsHead" Nullable="false" />
+          <NavigationProperty Name="Ratings" Relationship="StorageModel.DecisionRating" FromRole="Decision" ToRole="Rating" />
+          <NavigationProperty Name="DecisionHistory" Relationship="StorageModel.DecisionHistoryDecision" FromRole="Decision" ToRole="DecisionHistory" />
+        </EntityType>
+        <EntityType Name="GroupDecision" BaseType="StorageModel.Decision">
+          <NavigationProperty Name="Group" Relationship="StorageModel.GroupGroupDecision" FromRole="GroupDecision" ToRole="Group" />
+        </EntityType>
+        <EntityType Name="Person" BaseType="StorageModel.Entity">
+          <NavigationProperty Name="Group" Relationship="StorageModel.GroupPerson" FromRole="Person" ToRole="Group" />
+        </EntityType>
+        <EntityType Name="Group" BaseType="StorageModel.Entity">
+          <NavigationProperty Name="People" Relationship="StorageModel.GroupPerson" FromRole="Group" ToRole="Person" />
+          <NavigationProperty Name="GroupDecisions" Relationship="StorageModel.GroupGroupDecision" FromRole="Group" ToRole="GroupDecision" />
+        </EntityType>
+        <EntityType Name="Factor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="false" />
+          <Property Type="String" Name="Weight" Nullable="false" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" />
+          <Property Type="DateTime" Name="DateModified" Nullable="false" />
+          <Property Type="String" Name="Version" Nullable="false" />
+          <NavigationProperty Name="Option" Relationship="StorageModel.OptionFactor" FromRole="Factor" ToRole="Option" />
+          <Property Type="String" Name="IsHeart" Nullable="false" />
+          <Property Type="String" Name="IsHead" Nullable="false" />
+          <NavigationProperty Name="Entity" Relationship="StorageModel.EntityFactor" FromRole="Factor" ToRole="Entity" />
+          <NavigationProperty Name="Ratings" Relationship="StorageModel.FactorRating" FromRole="Factor" ToRole="Rating" />
+        </EntityType>
+        <Association Name="GroupPerson">
+          <End Type="StorageModel.Group" Role="Group" Multiplicity="1" />
+          <End Type="StorageModel.Person" Role="Person" Multiplicity="*" />
+        </Association>
+        <Association Name="GroupGroupDecision">
+          <End Type="StorageModel.Group" Role="Group" Multiplicity="1" />
+          <End Type="StorageModel.GroupDecision" Role="GroupDecision" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Entity" Relationship="StorageModel.EntityRole" FromRole="Role" ToRole="Entity" />
+          <Property Type="Boolean" Name="IsGlobalAdmin" Nullable="false" />
+          <Property Name="IsAuthenticated" Nullable="false" Type="Boolean" />
+          <Property Type="Boolean" Name="IsTrusted" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Entity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <NavigationProperty Name="Roles" Relationship="StorageModel.EntityRole" FromRole="Entity" ToRole="Role" />
+          <NavigationProperty Name="Decisions" Relationship="StorageModel.EntityDecision" FromRole="Entity" ToRole="Decision" />
+          <NavigationProperty Name="Sessions" Relationship="StorageModel.EntitySession" FromRole="Entity" ToRole="Session" />
+          <NavigationProperty Name="SocialIdentities" Relationship="StorageModel.EntitySocialIdentity" FromRole="Entity" ToRole="SocialIdentity" />
+          <NavigationProperty Name="Reputation" Relationship="StorageModel.EntityKudos" FromRole="Entity" ToRole="Kudos" />
+          <NavigationProperty Name="Friends" Relationship="StorageModel.EntityEntity" FromRole="Entity" ToRole="Entity1" />
+          <NavigationProperty Name="Options" Relationship="StorageModel.EntityOptions" FromRole="Entity" ToRole="Options" />
+          <NavigationProperty Name="ComplexDecisions" Relationship="StorageModel.ComplexDecisionEntity" FromRole="Entity" ToRole="ComplexDecision" />
+          <NavigationProperty Name="Ratings" Relationship="StorageModel.EntityRating" FromRole="Entity" ToRole="Rating" />
+          <NavigationProperty Name="Factors" Relationship="StorageModel.EntityFactor" FromRole="Entity" ToRole="Factor" />
+        </EntityType>
+        <Association Name="EntityRole">
+          <End Type="StorageModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="StorageModel.Role" Role="Role" Multiplicity="*" />
+        </Association>
+        <Association Name="EntityDecision">
+          <End Type="StorageModel.Entity" Multiplicity="*" Role="Entity" />
+          <End Type="StorageModel.Decision" Multiplicity="*" Role="Decision" />
+        </Association>
+        <EntityType Name="Session">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Entity" Relationship="StorageModel.EntitySession" FromRole="Session" ToRole="Entity" />
+        </EntityType>
+        <Association Name="EntitySession">
+          <End Type="StorageModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="StorageModel.Session" Role="Session" Multiplicity="*" />
+        </Association>
+        <EntityType Name="SocialIdentity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Entity" Relationship="StorageModel.EntitySocialIdentity" FromRole="SocialIdentity" ToRole="Entity" />
+          <Property Type="String" Name="IsTwitter" Nullable="false" />
+          <Property Type="String" Name="IsFacebook" Nullable="false" />
+          <Property Type="String" Name="IsGooglePlus" Nullable="false" />
+        </EntityType>
+        <Association Name="EntitySocialIdentity">
+          <End Type="StorageModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="StorageModel.SocialIdentity" Role="SocialIdentity" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Facebook" BaseType="StorageModel.SocialIdentity">
+          <Property Type="String" Name="Identity" Nullable="false" />
+          <Property Type="String" Name="Publish" Nullable="false" />
+          <Property Type="String" Name="PublishAlways" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Twitter" BaseType="StorageModel.SocialIdentity">
+          <Property Type="String" Name="Identity" Nullable="false" />
+          <Property Type="String" Name="Publish" Nullable="false" />
+          <Property Type="String" Name="PublishAlways" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Wisdom">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Decisions" Relationship="StorageModel.MyDecisionsDecision" FromRole="MyDecisions" ToRole="Decision" />
+        </EntityType>
+        <Association Name="MyDecisionsDecision">
+          <End Type="StorageModel.Wisdom" Role="MyDecisions" Multiplicity="1" />
+          <End Type="StorageModel.Decision" Role="Decision" Multiplicity="*" />
+        </Association>
+        <EntityType Name="GooglePlus" BaseType="StorageModel.SocialIdentity">
+          <Property Type="String" Name="Identity" Nullable="false" />
+          <Property Type="String" Name="Publish" Nullable="false" />
+          <Property Type="String" Name="PublishAlways" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Options">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Factors" Relationship="StorageModel.OptionFactor" FromRole="Option" ToRole="Factor" />
+          <NavigationProperty Name="Decision" Relationship="StorageModel.DecisionOptions" FromRole="Options" ToRole="Decision" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" />
+          <Property Type="DateTime" Name="DateModified" Nullable="false" />
+          <Property Type="Boolean" Name="IsMostPopular" Nullable="false" />
+          <Property Type="Boolean" Name="IsLeastPopular" Nullable="false" />
+          <Property Type="String" Name="Version" Nullable="false" />
+          <Property Type="Boolean" Name="Chosen" Nullable="false" />
+          <Property Type="DateTime" Name="TimeSelected" Nullable="false" />
+          <Property Type="String" Name="IsHeart" Nullable="false" />
+          <Property Type="String" Name="IsHead" Nullable="false" />
+          <NavigationProperty Name="Entity" Relationship="StorageModel.EntityOptions" FromRole="Options" ToRole="Entity" />
+          <NavigationProperty Name="Ratings" Relationship="StorageModel.OptionsRating" FromRole="Options" ToRole="Rating" />
+        </EntityType>
+        <Association Name="OptionFactor">
+          <End Type="StorageModel.Options" Role="Option" Multiplicity="1" />
+          <End Type="StorageModel.Factor" Role="Factor" Multiplicity="*" />
+        </Association>
+        <Association Name="DecisionOptions">
+          <End Type="StorageModel.Decision" Role="Decision" Multiplicity="1" />
+          <End Type="StorageModel.Options" Role="Options" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Reputation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Entity" Relationship="StorageModel.EntityKudos" FromRole="Kudos" ToRole="Entity" />
+          <Property Type="Int64" Name="Score" Nullable="false" />
+        </EntityType>
+        <Association Name="EntityKudos">
+          <End Type="StorageModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="StorageModel.Reputation" Role="Kudos" Multiplicity="1" />
+        </Association>
+        <Association Name="EntityEntity">
+          <End Type="StorageModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="StorageModel.Entity" Role="Entity1" Multiplicity="*" />
+        </Association>
+        <EntityType Name="ComplexDecision">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Decisions" Relationship="StorageModel.ComplexDecisionDecision" FromRole="ComplexDecision" ToRole="Decision" />
+          <NavigationProperty Name="Entities" Relationship="StorageModel.ComplexDecisionEntity" FromRole="ComplexDecision" ToRole="Entity" />
+          <NavigationProperty Name="ComplexDecisionHistory" Relationship="StorageModel.ComplexDecisionHistoryComplexDecision" FromRole="ComplexDecision" ToRole="ComplexDecisionHistory" />
+          <NavigationProperty Name="Ratings" Relationship="StorageModel.ComplexDecisionRating" FromRole="ComplexDecision" ToRole="Rating" />
+        </EntityType>
+        <Association Name="ComplexDecisionDecision">
+          <End Type="StorageModel.ComplexDecision" Role="ComplexDecision" Multiplicity="1" />
+          <End Type="StorageModel.Decision" Role="Decision" Multiplicity="*" />
+        </Association>
+        <Association Name="EntityOptions">
+          <End Type="StorageModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="StorageModel.Options" Role="Options" Multiplicity="*" />
+        </Association>
+        <Association Name="ComplexDecisionEntity">
+          <End Type="StorageModel.ComplexDecision" Role="ComplexDecision" Multiplicity="1" />
+          <End Type="StorageModel.Entity" Role="Entity" Multiplicity="*" />
+        </Association>
+        <EntityType Name="ComplexDecisionHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="ComplexDecisions" Relationship="StorageModel.ComplexDecisionHistoryComplexDecision" FromRole="ComplexDecisionHistory" ToRole="ComplexDecision" />
+          <Property Type="Int64" Name="Version" Nullable="false" />
+          <Property Type="DateTime" Name="DateTime" Nullable="false" />
+        </EntityType>
+        <Association Name="ComplexDecisionHistoryComplexDecision">
+          <End Type="StorageModel.ComplexDecisionHistory" Role="ComplexDecisionHistory" Multiplicity="1" />
+          <End Type="StorageModel.ComplexDecision" Role="ComplexDecision" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Rating">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Decision" Relationship="StorageModel.DecisionRating" FromRole="Rating" ToRole="Decision" />
+          <Property Type="String" Name="Summary" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="false" />
+          <Property Type="Int64" Name="Value" Nullable="false" />
+          <NavigationProperty Name="Option" Relationship="StorageModel.OptionsRating" FromRole="Rating" ToRole="Options" />
+          <NavigationProperty Name="Entity" Relationship="StorageModel.EntityRating" FromRole="Rating" ToRole="Entity" />
+          <NavigationProperty Name="Factor" Relationship="StorageModel.FactorRating" FromRole="Rating" ToRole="Factor" />
+          <NavigationProperty Name="ComplexDecision" Relationship="StorageModel.ComplexDecisionRating" FromRole="Rating" ToRole="ComplexDecision" />
+        </EntityType>
+        <Association Name="DecisionRating">
+          <End Type="StorageModel.Decision" Role="Decision" Multiplicity="1" />
+          <End Type="StorageModel.Rating" Role="Rating" Multiplicity="*" />
+        </Association>
+        <Association Name="OptionsRating">
+          <End Type="StorageModel.Options" Role="Options" Multiplicity="1" />
+          <End Type="StorageModel.Rating" Role="Rating" Multiplicity="*" />
+        </Association>
+        <Association Name="EntityRating">
+          <End Type="StorageModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="StorageModel.Rating" Role="Rating" Multiplicity="*" />
+        </Association>
+        <Association Name="EntityFactor">
+          <End Type="StorageModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="StorageModel.Factor" Role="Factor" Multiplicity="*" />
+        </Association>
+        <Association Name="FactorRating">
+          <End Type="StorageModel.Factor" Role="Factor" Multiplicity="1" />
+          <End Type="StorageModel.Rating" Role="Rating" Multiplicity="*" />
+        </Association>
+        <Association Name="ComplexDecisionRating">
+          <End Type="StorageModel.ComplexDecision" Role="ComplexDecision" Multiplicity="1" />
+          <End Type="StorageModel.Rating" Role="Rating" Multiplicity="*" />
+        </Association>
+        <EntityType Name="DecisionHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Decisions" Relationship="StorageModel.DecisionHistoryDecision" FromRole="DecisionHistory" ToRole="Decision" />
+          <Property Type="String" Name="Version" Nullable="false" />
+          <Property Type="String" Name="DateTime" Nullable="false" />
+        </EntityType>
+        <Association Name="DecisionHistoryDecision">
+          <End Type="StorageModel.DecisionHistory" Role="DecisionHistory" Multiplicity="1" />
+          <End Type="StorageModel.Decision" Role="Decision" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="StorageModelStoreContainer" CdmEntityContainer="StorageModelContainer">
+    <EntitySetMapping Name="Factors">
+      <EntityTypeMapping TypeName="IsTypeOf(StorageModel.Factor)">
+        <MappingFragment StoreEntitySet="Factors">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+          <ScalarProperty Name="Version" ColumnName="Version" />
+          <ScalarProperty Name="IsHeart" ColumnName="IsHeart" />
+          <ScalarProperty Name="IsHead" ColumnName="IsHead" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Decisions">
+      <EntityTypeMapping TypeName="IsTypeOf(StorageModel.Decision)">
+        <MappingFragment StoreEntitySet="Decisions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IsPrivate" ColumnName="IsPrivate" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+          <ScalarProperty Name="Version" ColumnName="Version" />
+          <ScalarProperty Name="IsSocial" ColumnName="IsSocial" />
+          <ScalarProperty Name="IsPersonal" ColumnName="IsPersonal" />
+          <ScalarProperty Name="IsPublic" ColumnName="IsPublic" />
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+          <ScalarProperty Name="IsHeart" ColumnName="IsHeart" />
+          <ScalarProperty Name="IsHead" ColumnName="IsHead" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(StorageModel.GroupDecision)">
+        <MappingFragment StoreEntitySet="Decisions_GroupDecision">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="IsTypeOf(StorageModel.Role)">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IsGlobalAdmin" ColumnName="IsGlobalAdmin" />
+          <ScalarProperty Name="IsAuthenticated" ColumnName="IsAuthenticated" />
+          <ScalarProperty Name="IsTrusted" ColumnName="IsTrusted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Entities">
+      <EntityTypeMapping TypeName="IsTypeOf(StorageModel.Entity)">
+        <MappingFragment StoreEntitySet="Entities">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(StorageModel.Group)">
+        <MappingFragment StoreEntitySet="Entities_Group">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(StorageModel.Person)">
+        <MappingFragment StoreEntitySet="Entities_Person">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sessions">
+      <EntityTypeMapping TypeName="IsTypeOf(StorageModel.Session)">
+        <MappingFragment StoreEntitySet="Sessions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SocialIdentities">
+      <EntityTypeMapping TypeName="IsTypeOf(StorageModel.SocialIdentity)">
+        <MappingFragment StoreEntitySet="SocialIdentities">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IsTwitter" ColumnName="IsTwitter" />
+          <ScalarProperty Name="IsFacebook" ColumnName="IsFacebook" />
+          <ScalarProperty Name="IsGooglePlus" ColumnName="IsGooglePlus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(StorageModel.Facebook)">
+        <MappingFragment StoreEntitySet="SocialIdentities_Facebook">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Identity" ColumnName="Identity" />
+          <ScalarProperty Name="Publish" ColumnName="Publish" />
+          <ScalarProperty Name="PublishAlways" ColumnName="PublishAlways" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(StorageModel.Twitter)">
+        <MappingFragment StoreEntitySet="SocialIdentities_Twitter">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Identity" ColumnName="Identity" />
+          <ScalarProperty Name="Publish" ColumnName="Publish" />
+          <ScalarProperty Name="PublishAlways" ColumnName="PublishAlways" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(StorageModel.GooglePlus)">
+        <MappingFragment StoreEntitySet="SocialIdentities_GooglePlus">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Identity" ColumnName="Identity" />
+          <ScalarProperty Name="Publish" ColumnName="Publish" />
+          <ScalarProperty Name="PublishAlways" ColumnName="PublishAlways" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Wisdom">
+      <EntityTypeMapping TypeName="IsTypeOf(StorageModel.Wisdom)">
+        <MappingFragment StoreEntitySet="Wisdom">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Options1">
+      <EntityTypeMapping TypeName="IsTypeOf(StorageModel.Options)">
+        <MappingFragment StoreEntitySet="Options1">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+          <ScalarProperty Name="IsMostPopular" ColumnName="IsMostPopular" />
+          <ScalarProperty Name="IsLeastPopular" ColumnName="IsLeastPopular" />
+          <ScalarProperty Name="Version" ColumnName="Version" />
+          <ScalarProperty Name="Chosen" ColumnName="Chosen" />
+          <ScalarProperty Name="TimeSelected" ColumnName="TimeSelected" />
+          <ScalarProperty Name="IsHeart" ColumnName="IsHeart" />
+          <ScalarProperty Name="IsHead" ColumnName="IsHead" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reputations">
+      <EntityTypeMapping TypeName="IsTypeOf(StorageModel.Reputation)">
+        <MappingFragment StoreEntitySet="Reputations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ComplexDecisions">
+      <EntityTypeMapping TypeName="IsTypeOf(StorageModel.ComplexDecision)">
+        <MappingFragment StoreEntitySet="ComplexDecisions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ComplexDecisionHistories">
+      <EntityTypeMapping TypeName="IsTypeOf(StorageModel.ComplexDecisionHistory)">
+        <MappingFragment StoreEntitySet="ComplexDecisionHistories">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Version" ColumnName="Version" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ratings">
+      <EntityTypeMapping TypeName="IsTypeOf(StorageModel.Rating)">
+        <MappingFragment StoreEntitySet="Ratings">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Summary" ColumnName="Summary" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DecisionHistories">
+      <EntityTypeMapping TypeName="IsTypeOf(StorageModel.DecisionHistory)">
+        <MappingFragment StoreEntitySet="DecisionHistories">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Version" ColumnName="Version" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="GroupPerson" TypeName="StorageModel.GroupPerson" StoreEntitySet="Entities_Person">
+      <EndProperty Name="Group">
+        <ScalarProperty Name="Id" ColumnName="Group_Id" />
+      </EndProperty>
+      <EndProperty Name="Person">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="GroupGroupDecision" TypeName="StorageModel.GroupGroupDecision" StoreEntitySet="Decisions_GroupDecision">
+      <EndProperty Name="Group">
+        <ScalarProperty Name="Id" ColumnName="Group_Id" />
+      </EndProperty>
+      <EndProperty Name="GroupDecision">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="EntityRole" TypeName="StorageModel.EntityRole" StoreEntitySet="Roles">
+      <EndProperty Name="Entity">
+        <ScalarProperty Name="Id" ColumnName="Entity_Id" />
+      </EndProperty>
+      <EndProperty Name="Role">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="EntityDecision" TypeName="StorageModel.EntityDecision" StoreEntitySet="EntityDecision">
+      <EndProperty Name="Entity">
+        <ScalarProperty Name="Id" ColumnName="Entity_Id" />
+      </EndProperty>
+      <EndProperty Name="Decision">
+        <ScalarProperty Name="Id" ColumnName="Decisions_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="EntitySession" TypeName="StorageModel.EntitySession" StoreEntitySet="Sessions">
+      <EndProperty Name="Entity">
+        <ScalarProperty Name="Id" ColumnName="Entity_Id" />
+      </EndProperty>
+      <EndProperty Name="Session">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="EntitySocialIdentity" TypeName="StorageModel.EntitySocialIdentity" StoreEntitySet="SocialIdentities">
+      <EndProperty Name="Entity">
+        <ScalarProperty Name="Id" ColumnName="Entity_Id" />
+      </EndProperty>
+      <EndProperty Name="SocialIdentity">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="MyDecisionsDecision" TypeName="StorageModel.MyDecisionsDecision" StoreEntitySet="Decisions">
+      <EndProperty Name="MyDecisions">
+        <ScalarProperty Name="Id" ColumnName="Wisdom_Id" />
+      </EndProperty>
+      <EndProperty Name="Decision">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="OptionFactor" TypeName="StorageModel.OptionFactor" StoreEntitySet="Factors">
+      <EndProperty Name="Option">
+        <ScalarProperty Name="Id" ColumnName="Option_Id" />
+      </EndProperty>
+      <EndProperty Name="Factor">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="DecisionOptions" TypeName="StorageModel.DecisionOptions" StoreEntitySet="Options1">
+      <EndProperty Name="Decision">
+        <ScalarProperty Name="Id" ColumnName="Decision_Id" />
+      </EndProperty>
+      <EndProperty Name="Options">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="EntityKudos" TypeName="StorageModel.EntityKudos" StoreEntitySet="Entities">
+      <EndProperty Name="Kudos">
+        <ScalarProperty Name="Id" ColumnName="Reputation_Id" />
+      </EndProperty>
+      <EndProperty Name="Entity">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="EntityEntity" TypeName="StorageModel.EntityEntity" StoreEntitySet="Entities">
+      <EndProperty Name="Entity">
+        <ScalarProperty Name="Id" ColumnName="EntityEntity_Entity1_Id" />
+      </EndProperty>
+      <EndProperty Name="Entity1">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ComplexDecisionDecision" TypeName="StorageModel.ComplexDecisionDecision" StoreEntitySet="Decisions">
+      <EndProperty Name="ComplexDecision">
+        <ScalarProperty Name="Id" ColumnName="ComplexDecision_Id" />
+      </EndProperty>
+      <EndProperty Name="Decision">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="EntityOptions" TypeName="StorageModel.EntityOptions" StoreEntitySet="Options1">
+      <EndProperty Name="Entity">
+        <ScalarProperty Name="Id" ColumnName="Entity_Id" />
+      </EndProperty>
+      <EndProperty Name="Options">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ComplexDecisionEntity" TypeName="StorageModel.ComplexDecisionEntity" StoreEntitySet="Entities">
+      <EndProperty Name="ComplexDecision">
+        <ScalarProperty Name="Id" ColumnName="ComplexDecisions_Id" />
+      </EndProperty>
+      <EndProperty Name="Entity">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ComplexDecisionHistoryComplexDecision" TypeName="StorageModel.ComplexDecisionHistoryComplexDecision" StoreEntitySet="ComplexDecisions">
+      <EndProperty Name="ComplexDecisionHistory">
+        <ScalarProperty Name="Id" ColumnName="ComplexDecisionHistory_Id" />
+      </EndProperty>
+      <EndProperty Name="ComplexDecision">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="DecisionRating" TypeName="StorageModel.DecisionRating" StoreEntitySet="Ratings">
+      <EndProperty Name="Decision">
+        <ScalarProperty Name="Id" ColumnName="Decision_Id" />
+      </EndProperty>
+      <EndProperty Name="Rating">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="OptionsRating" TypeName="StorageModel.OptionsRating" StoreEntitySet="Ratings">
+      <EndProperty Name="Options">
+        <ScalarProperty Name="Id" ColumnName="Option_Id" />
+      </EndProperty>
+      <EndProperty Name="Rating">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="EntityRating" TypeName="StorageModel.EntityRating" StoreEntitySet="Ratings">
+      <EndProperty Name="Entity">
+        <ScalarProperty Name="Id" ColumnName="Entity_Id" />
+      </EndProperty>
+      <EndProperty Name="Rating">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="EntityFactor" TypeName="StorageModel.EntityFactor" StoreEntitySet="Factors">
+      <EndProperty Name="Entity">
+        <ScalarProperty Name="Id" ColumnName="Entity_Id" />
+      </EndProperty>
+      <EndProperty Name="Factor">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FactorRating" TypeName="StorageModel.FactorRating" StoreEntitySet="Ratings">
+      <EndProperty Name="Factor">
+        <ScalarProperty Name="Id" ColumnName="Factor_Id" />
+      </EndProperty>
+      <EndProperty Name="Rating">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ComplexDecisionRating" TypeName="StorageModel.ComplexDecisionRating" StoreEntitySet="Ratings">
+      <EndProperty Name="ComplexDecision">
+        <ScalarProperty Name="Id" ColumnName="ComplexDecision_Id" />
+      </EndProperty>
+      <EndProperty Name="Rating">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="DecisionHistoryDecision" TypeName="StorageModel.DecisionHistoryDecision" StoreEntitySet="Decisions">
+      <EndProperty Name="DecisionHistory">
+        <ScalarProperty Name="Id" ColumnName="DecisionHistory_Id" />
+      </EndProperty>
+      <EndProperty Name="Decision">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
