@@ -30,7 +30,6 @@ namespace Decide
         public DbSet<Role> Roles { get; set; }
         public DbSet<Entity> Entities { get; set; }
         public DbSet<Session> Sessions { get; set; }
-        public DbSet<SocialIdentity> SocialIdentities { get; set; }
         public DbSet<Wisdom> Wisdom { get; set; }
         public DbSet<Options> Options { get; set; }
         public DbSet<Reputation> Reputations { get; set; }
@@ -39,5 +38,9 @@ namespace Decide
         public DbSet<Rating> Ratings { get; set; }
         public DbSet<DecisionHistory> DecisionHistories { get; set; }
         public DbSet<DecusionHistory> DecusionHistories { get; set; }
+        public DbSet<SocialIdentity> SocialIdentities { get; set; }
+        public DbSet<SocialIdentities_Facebook> SocialIdentities_Facebook { get; set; }
+        public DbSet<SocialIdentities_GooglePlus> SocialIdentities_GooglePlus { get; set; }
+        public DbSet<SocialIdentities_Twitter> SocialIdentities_Twitter { get; set; }
     }
 }

@@ -19,11 +19,11 @@ namespace Decide
             this.Roles = new HashSet<Role>();
             this.Decisions = new HashSet<Decision>();
             this.Sessions = new HashSet<Session>();
-            this.SocialIdentities = new HashSet<SocialIdentity>();
             this.Friends = new HashSet<Entity>();
             this.Options = new HashSet<Options>();
             this.Ratings = new HashSet<Rating>();
             this.Factors = new HashSet<Factor>();
+            this.SocialIdentities = new HashSet<SocialIdentity>();
         }
     
         public int Id { get; set; }
@@ -32,12 +32,12 @@ namespace Decide
         public virtual ICollection<Role> Roles { get; set; }
         public virtual ICollection<Decision> Decisions { get; set; }
         public virtual ICollection<Session> Sessions { get; set; }
-        public virtual ICollection<SocialIdentity> SocialIdentities { get; set; }
         public virtual Reputation Reputation { get; set; }
         public virtual ICollection<Entity> Friends { get; set; }
         public virtual ICollection<Options> Options { get; set; }
         public virtual ComplexDecision ComplexDecisions { get; set; }
         public virtual ICollection<Rating> Ratings { get; set; }
         public virtual ICollection<Factor> Factors { get; set; }
+        public virtual ICollection<SocialIdentity> SocialIdentities { get; set; }
     }
 }

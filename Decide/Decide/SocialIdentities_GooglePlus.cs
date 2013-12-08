@@ -12,10 +12,13 @@ namespace Decide
     using System;
     using System.Collections.Generic;
     
-    public partial class GooglePlus : SocialIdentity
+    public partial class SocialIdentities_GooglePlus
     {
         public string Identity { get; set; }
         public string Publish { get; set; }
         public string PublishAlways { get; set; }
+        public int Id { get; set; }
+    
+        public virtual SocialIdentity SocialIdentity { get; set; }
     }
 }

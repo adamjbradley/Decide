@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 10/04/2013 11:24:38
+-- Date Created: 10/04/2013 12:13:02
 -- Generated from EDMX file: C:\Users\abradley\Documents\GitHub\Decide\Decide\Decide\StorageModel.edmx
 -- --------------------------------------------------
 
@@ -35,9 +35,6 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_EntitySession]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Sessions] DROP CONSTRAINT [FK_EntitySession];
 GO
-IF OBJECT_ID(N'[dbo].[FK_EntitySocialIdentity]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[SocialIdentities] DROP CONSTRAINT [FK_EntitySocialIdentity];
-GO
 IF OBJECT_ID(N'[dbo].[FK_MyDecisionsDecision]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Decisions] DROP CONSTRAINT [FK_MyDecisionsDecision];
 GO
@@ -45,7 +42,7 @@ IF OBJECT_ID(N'[dbo].[FK_OptionFactor]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Factors] DROP CONSTRAINT [FK_OptionFactor];
 GO
 IF OBJECT_ID(N'[dbo].[FK_DecisionOptions]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Options1] DROP CONSTRAINT [FK_DecisionOptions];
+    ALTER TABLE [dbo].[Options] DROP CONSTRAINT [FK_DecisionOptions];
 GO
 IF OBJECT_ID(N'[dbo].[FK_EntityKudos]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Entities] DROP CONSTRAINT [FK_EntityKudos];
@@ -57,7 +54,7 @@ IF OBJECT_ID(N'[dbo].[FK_ComplexDecisionDecision]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Decisions] DROP CONSTRAINT [FK_ComplexDecisionDecision];
 GO
 IF OBJECT_ID(N'[dbo].[FK_EntityOptions]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Options1] DROP CONSTRAINT [FK_EntityOptions];
+    ALTER TABLE [dbo].[Options] DROP CONSTRAINT [FK_EntityOptions];
 GO
 IF OBJECT_ID(N'[dbo].[FK_ComplexDecisionEntity]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Entities] DROP CONSTRAINT [FK_ComplexDecisionEntity];
@@ -98,15 +95,6 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_GroupDecision_inherits_Decision]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Decisions_GroupDecision] DROP CONSTRAINT [FK_GroupDecision_inherits_Decision];
 GO
-IF OBJECT_ID(N'[dbo].[FK_Facebook_inherits_SocialIdentity]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[SocialIdentities_Facebook] DROP CONSTRAINT [FK_Facebook_inherits_SocialIdentity];
-GO
-IF OBJECT_ID(N'[dbo].[FK_Twitter_inherits_SocialIdentity]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[SocialIdentities_Twitter] DROP CONSTRAINT [FK_Twitter_inherits_SocialIdentity];
-GO
-IF OBJECT_ID(N'[dbo].[FK_GooglePlus_inherits_SocialIdentity]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[SocialIdentities_GooglePlus] DROP CONSTRAINT [FK_GooglePlus_inherits_SocialIdentity];
-GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -127,14 +115,11 @@ GO
 IF OBJECT_ID(N'[dbo].[Sessions]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Sessions];
 GO
-IF OBJECT_ID(N'[dbo].[SocialIdentities]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[SocialIdentities];
-GO
 IF OBJECT_ID(N'[dbo].[Wisdom]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Wisdom];
 GO
-IF OBJECT_ID(N'[dbo].[Options1]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Options1];
+IF OBJECT_ID(N'[dbo].[Options]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Options];
 GO
 IF OBJECT_ID(N'[dbo].[Reputations]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Reputations];
@@ -162,15 +147,6 @@ IF OBJECT_ID(N'[dbo].[Entities_Person]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[Decisions_GroupDecision]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Decisions_GroupDecision];
-GO
-IF OBJECT_ID(N'[dbo].[SocialIdentities_Facebook]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[SocialIdentities_Facebook];
-GO
-IF OBJECT_ID(N'[dbo].[SocialIdentities_Twitter]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[SocialIdentities_Twitter];
-GO
-IF OBJECT_ID(N'[dbo].[SocialIdentities_GooglePlus]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[SocialIdentities_GooglePlus];
 GO
 IF OBJECT_ID(N'[dbo].[EntityDecision]', 'U') IS NOT NULL
     DROP TABLE [dbo].[EntityDecision];
@@ -240,16 +216,6 @@ GO
 -- Creating table 'Sessions'
 CREATE TABLE [dbo].[Sessions] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Entity_Id] int  NOT NULL
-);
-GO
-
--- Creating table 'SocialIdentities'
-CREATE TABLE [dbo].[SocialIdentities] (
-    [Id] int IDENTITY(1,1) NOT NULL,
-    [IsTwitter] nvarchar(max)  NOT NULL,
-    [IsFacebook] nvarchar(max)  NOT NULL,
-    [IsGooglePlus] nvarchar(max)  NOT NULL,
     [Entity_Id] int  NOT NULL
 );
 GO
@@ -350,33 +316,6 @@ CREATE TABLE [dbo].[Decisions_GroupDecision] (
 );
 GO
 
--- Creating table 'SocialIdentities_Facebook'
-CREATE TABLE [dbo].[SocialIdentities_Facebook] (
-    [Identity] nvarchar(max)  NOT NULL,
-    [Publish] nvarchar(max)  NOT NULL,
-    [PublishAlways] nvarchar(max)  NOT NULL,
-    [Id] int  NOT NULL
-);
-GO
-
--- Creating table 'SocialIdentities_Twitter'
-CREATE TABLE [dbo].[SocialIdentities_Twitter] (
-    [Identity] nvarchar(max)  NOT NULL,
-    [Publish] nvarchar(max)  NOT NULL,
-    [PublishAlways] nvarchar(max)  NOT NULL,
-    [Id] int  NOT NULL
-);
-GO
-
--- Creating table 'SocialIdentities_GooglePlus'
-CREATE TABLE [dbo].[SocialIdentities_GooglePlus] (
-    [Identity] nvarchar(max)  NOT NULL,
-    [Publish] nvarchar(max)  NOT NULL,
-    [PublishAlways] nvarchar(max)  NOT NULL,
-    [Id] int  NOT NULL
-);
-GO
-
 -- Creating table 'EntityDecision'
 CREATE TABLE [dbo].[EntityDecision] (
     [Entity_Id] int  NOT NULL,
@@ -415,12 +354,6 @@ GO
 -- Creating primary key on [Id] in table 'Sessions'
 ALTER TABLE [dbo].[Sessions]
 ADD CONSTRAINT [PK_Sessions]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
--- Creating primary key on [Id] in table 'SocialIdentities'
-ALTER TABLE [dbo].[SocialIdentities]
-ADD CONSTRAINT [PK_SocialIdentities]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -487,24 +420,6 @@ GO
 -- Creating primary key on [Id] in table 'Decisions_GroupDecision'
 ALTER TABLE [dbo].[Decisions_GroupDecision]
 ADD CONSTRAINT [PK_Decisions_GroupDecision]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
--- Creating primary key on [Id] in table 'SocialIdentities_Facebook'
-ALTER TABLE [dbo].[SocialIdentities_Facebook]
-ADD CONSTRAINT [PK_SocialIdentities_Facebook]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
--- Creating primary key on [Id] in table 'SocialIdentities_Twitter'
-ALTER TABLE [dbo].[SocialIdentities_Twitter]
-ADD CONSTRAINT [PK_SocialIdentities_Twitter]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
--- Creating primary key on [Id] in table 'SocialIdentities_GooglePlus'
-ALTER TABLE [dbo].[SocialIdentities_GooglePlus]
-ADD CONSTRAINT [PK_SocialIdentities_GooglePlus]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -594,20 +509,6 @@ ADD CONSTRAINT [FK_EntitySession]
 -- Creating non-clustered index for FOREIGN KEY 'FK_EntitySession'
 CREATE INDEX [IX_FK_EntitySession]
 ON [dbo].[Sessions]
-    ([Entity_Id]);
-GO
-
--- Creating foreign key on [Entity_Id] in table 'SocialIdentities'
-ALTER TABLE [dbo].[SocialIdentities]
-ADD CONSTRAINT [FK_EntitySocialIdentity]
-    FOREIGN KEY ([Entity_Id])
-    REFERENCES [dbo].[Entities]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_EntitySocialIdentity'
-CREATE INDEX [IX_FK_EntitySocialIdentity]
-ON [dbo].[SocialIdentities]
     ([Entity_Id]);
 GO
 
@@ -872,33 +773,6 @@ ALTER TABLE [dbo].[Decisions_GroupDecision]
 ADD CONSTRAINT [FK_GroupDecision_inherits_Decision]
     FOREIGN KEY ([Id])
     REFERENCES [dbo].[Decisions]
-        ([Id])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
-GO
-
--- Creating foreign key on [Id] in table 'SocialIdentities_Facebook'
-ALTER TABLE [dbo].[SocialIdentities_Facebook]
-ADD CONSTRAINT [FK_Facebook_inherits_SocialIdentity]
-    FOREIGN KEY ([Id])
-    REFERENCES [dbo].[SocialIdentities]
-        ([Id])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
-GO
-
--- Creating foreign key on [Id] in table 'SocialIdentities_Twitter'
-ALTER TABLE [dbo].[SocialIdentities_Twitter]
-ADD CONSTRAINT [FK_Twitter_inherits_SocialIdentity]
-    FOREIGN KEY ([Id])
-    REFERENCES [dbo].[SocialIdentities]
-        ([Id])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
-GO
-
--- Creating foreign key on [Id] in table 'SocialIdentities_GooglePlus'
-ALTER TABLE [dbo].[SocialIdentities_GooglePlus]
-ADD CONSTRAINT [FK_GooglePlus_inherits_SocialIdentity]
-    FOREIGN KEY ([Id])
-    REFERENCES [dbo].[SocialIdentities]
         ([Id])
     ON DELETE CASCADE ON UPDATE NO ACTION;
 GO

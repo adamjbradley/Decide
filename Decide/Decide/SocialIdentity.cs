@@ -18,7 +18,11 @@ namespace Decide
         public string IsTwitter { get; set; }
         public string IsFacebook { get; set; }
         public string IsGooglePlus { get; set; }
+        public int Entity_Id { get; set; }
     
         public virtual Entity Entity { get; set; }
+        public virtual SocialIdentities_Facebook SocialIdentities_Facebook { get; set; }
+        public virtual SocialIdentities_GooglePlus SocialIdentities_GooglePlus { get; set; }
+        public virtual SocialIdentities_Twitter SocialIdentities_Twitter { get; set; }
     }
 }
